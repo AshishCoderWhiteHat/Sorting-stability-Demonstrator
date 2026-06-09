@@ -14,27 +14,54 @@ async function runSort() {
     const data = await res.json();
 
     document.getElementById("output").innerHTML = `
-        <h2>Results</h2>
+    <h2 class="results-title">Results</h2>
 
-        <div class="result-box stable">
+    <div class="results-grid">
+
+        <div class="card stable-card">
             <h3>Merge Sort (Stable)</h3>
-            <p>${formatOutput(data.merge)}</p>
-            <b>Order Preserved ✅</b><br>
-            Time: ${data.merge_time} ms
+
+            <div class="output-data">
+                ${formatOutput(data.merge)}
+            </div>
+
+            <span class="badge success">
+                Order Preserved ✅
+            </span>
+
+            <div class="time">
+                Time: ${data.merge_time} ms
+            </div>
         </div>
 
-        <div class="result-box unstable">
+        <div class="card unstable-card">
             <h3>Selection Sort (Unstable)</h3>
-            <p>${formatOutput(data.selection)}</p>
-            <b>Order May Change ❌</b><br>
-            Time: ${data.selection_time} ms
+
+            <div class="output-data">
+                ${formatOutput(data.selection)}
+            </div>
+
+            <span class="badge danger">
+                Order May Change ❌
+            </span>
+
+            <div class="time">
+                Time: ${data.selection_time} ms
+            </div>
         </div>
 
-        <p style="margin-top:20px;">
-        <b>Explanation:</b> Stable sorting preserves the order of elements with equal values, 
-        while unstable sorting may change their relative order.
-        </p>
+    </div>
 
-        <p><i>Note: For small inputs, time difference is minimal. For large datasets, Merge Sort performs better.</i></p>
-    `;
+    <div class="explanation">
+        <strong>Explanation:</strong><br>
+        Stable sorting preserves the order of elements with equal values,
+        while unstable sorting may change their relative order.
+
+        <br><br>
+
+        <strong>Complexities:</strong><br>
+        Merge Sort → O(n log n)<br>
+        Selection Sort → O(n²)
+    </div>
+`;
 }
